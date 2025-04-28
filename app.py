@@ -13,6 +13,7 @@ def about():
 #flask permite mandar es decir soporta listas y diccionarios
 #{{ t }} permite iterar (esta en tasks) la t puede ser otra variable mas comoda pero tambien afectaria al for 
 #creado en tasks
+#guardando los cambios
 
 
 
