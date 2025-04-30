@@ -9,6 +9,11 @@ def home():
 @app.route('/about')
 def about():
     return "<h1><strong>Esta es la página de About.</strong></h1><p>Esta es una página de ejemplo para mostrar cómo funciona Flask.</p>"
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 #renderizar paginas para reutilizar codigo
 #flask permite mandar es decir soporta listas y diccionarios
 #{{ t }} permite iterar (esta en tasks) la t puede ser otra variable mas comoda pero tambien afectaria al for 
