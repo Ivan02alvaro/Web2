@@ -4,14 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>App de Gestión de Tareas</title>
-        <link rel="stylesheet" href="#">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     </head>
     <body class="d-flex h-100">
         <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
             <header class="mb-auto p-3 bg-dark text-white">
                 <div class="container">
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                        <a href="{{url_for('login')}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-journal-album" viewBox="0 0 24 24">
                                 <path d="M5.5 4a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5zm1 7a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z"/>
                                 <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
@@ -53,6 +53,6 @@
                 </div>
             </footer>    
         </div>
-        <script src="#"></script>
+        <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
     </body>
 </html>

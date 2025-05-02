@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -19,6 +20,9 @@ def login():
 #{{ t }} permite iterar (esta en tasks) la t puede ser otra variable mas comoda pero tambien afectaria al for 
 #creado en tasks
 #guardando los cambios
+@app.route('/tasks/create')
+def create_tasks():
+    return render_template('create_tasks.html')
 
 
 
