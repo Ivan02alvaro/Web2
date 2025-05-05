@@ -36,5 +36,12 @@ def list_tasks():
     tarea = ["Lavar la ropa","Limpiar la casa","Hacer la compra", "Estudiar para el examen","Hacer ejercicio","Leer un libro"]
     return render_template('tasks.html', t=tarea)
 
+
+
+@app.route('/task')
+def task():
+    return render_template('task.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5001)
