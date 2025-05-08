@@ -31,6 +31,12 @@ def login():
             return "Correo o contraseña incorrectos."
     return render_template('login.html')
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('home'))
+
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -53,7 +59,9 @@ def about():
 
 @app.route('/tasks')
 def list_tasks():
-    tareas = ["Lavar la ropa", "Limpiar la casa", "Hacer la compra", "Estudiar para el examen", "Hacer ejercicio", "Leer un libro"]
+    #tareas = ["Lavar la ropa", "Limpiar la casa", "Hacer la compra", "Estudiar para el examen", "Hacer ejercicio", "Leer un libro"]
+    Tarea=Tarea.query.filter_by(Usuario_id=session[Usuario])
+
     return render_template('tasks.html', tareas=tareas)
 
 @app.route('/task')
