@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, session
 from config import Config
 from models import db, Usuario, Tarea
+from datetime import datetime
 
 app = Flask(__name__)
 #Configuración de la aplicación Flask (donde se indica la base de datos a usar)
@@ -31,6 +32,11 @@ def login():
             return "Correo o contraseña incorrectos."
     return render_template('login.html')
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('home'))
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -53,19 +59,32 @@ def about():
 
 @app.route('/tasks')
 def list_tasks():
-    tareas = ["Lavar la ropa", "Limpiar la casa", "Hacer la compra", "Estudiar para el examen", "Hacer ejercicio", "Leer un libro"]
+    tareas = Tarea.query.filter_by(usuario_id=session["usuario_id"]).all()
     return render_template('tasks.html', tareas=tareas)
 
 @app.route('/task')
 def view_task():
     return render_template('task.html')
 
-@app.route('/task/create')
+@app.route('/task/create', methods=['GET','POST'])
 def create_task():
+    if request.method=='POST':
+        titulo=request.form['titulo']
+        descripcion=request.form['descripcion']
+        fecha_vencimiento=datetime.strptime(request.form['fecha'], '%Y-%m-%d')
+        prioridad=request.form['prioridad']
+        try:
+            nueva_tarea=Tarea(titulo=titulo, descripcion=descripcion, fecha_vencimiento=fecha_vencimiento, prioridad=prioridad,usuario_id=session['usuario_id'])
+            db.session.add(nueva_tarea)
+            db.session.commit()
+            return redirect(url_for('list_tasks'))
+        
+        except Exception as e:
+
+            return f"Error al crear la tarea:{e}"
+        
+
     return render_template('create_task.html')
-#Crear una ruta y la vista correspondiente para renderizar un html llamado "create_task.html"
-
-
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5001)
